@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Login</title>
+    <link rel="shortcut icon" href="assets/img/logo/تصميم بدون عنوان.png" type="image/x-icon">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('assets/img/logo/تصميم\ بدون\ عنوان.jpg') no-repeat center center;
+    background-size: cover;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* الغشاء على الخلفية */
+    backdrop-filter: blur(5px); /* للتخفيف */
+    z-index: 1;
+}
+
+form {
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+}
+
+form p.title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+form p.subtitle {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #fff;
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 1rem;
+}
+
+input::placeholder {
+    color: #fff;
+    opacity: 0.8;
+}
+.btn {
+            text-align: center;
+            margin-top: 10px;
+        }
+button {
+
+            
+
+    padding: 12px 0;
+    border: none;
+    border-radius: 30px;
+    background-color: #000;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+button:hover {
+            background-color: #161616;
+            transform: translateY(-2px);
+        }
+
+.register-link {
+    margin-top: 25px;
+    font-size: 0.9rem;
+    color: #aaa;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.register-link a {
+    color: #0c85ff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+#error-message {
+            background-color: rgba(255, 255, 255, 0.3);
+            color: #650101;
+            font-size: 1rem;
+            margin-top: 10px;
+            border-radius: 30px;
+            text-align: center;
+            display: block;
+            white-space: pre-wrap; /* يدعم الأسطر الجديدة */
+        }
+
+.forgot-password {
+    text-align:left;
+    margin-top: -10px; /* قريب من حقل الباسورد */
+    margin-bottom: 0px;
+}
+
+.forgot-password a {
+    color: #0c85ff;
+    font-size: 0.9rem;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+  </style>
+</head>
+
+<body>
+  <form id="login-form" action="/login" method="POST">
+    <p class="subtitle">Login...</p>
+
+    <div class="input">
+      <!--<label for="email">Email</label>-->
+      <input type="email" id="email" name="email" placeholder="your@email.com" required />
+    </div>
+
+    <div class="input">
+      <!--<label for="password">Password</label>-->
+      <input type="password" id="password" name="password" placeholder="Password" required />
+    </div>
+<div class="forgot-password" style="text-align:right;margin-top:-10px;margin-bottom:20px">
+  <a href="/forgot-password.html" class="forgot-password" >Forgot your password?</a>
+</div>
+
+
+    <div id="error-message"></div>
+
+      <button type="submit">Login</button>
+
+    <div class="register-link">
+      Don't have an account? <a href="register.html">Register</a>
+    </div>
+  </form>
+
+  <!-- مكتبات التحقّق/التنظيف -->
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
+  <script src="sanitization.js"></script>
+
+<script src="login.js" defer></script>
+</body>
+</html>
