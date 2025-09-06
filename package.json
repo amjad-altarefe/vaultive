@@ -2,6 +2,7 @@
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
+    "csurf": "^1.11.0",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "express-rate-limit": "^7.5.1",
@@ -13,6 +14,8 @@
     "mongoose": "^8.15.0",
     "nodemailer": "^7.0.5",
     "qrcode": "^1.5.4",
-    "speakeasy": "^2.0.0"
+    "speakeasy": "^2.0.0",
+    "lusca": "^1.7.0"
+
   }
 }

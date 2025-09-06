@@ -11,6 +11,7 @@ const { encrypt, decrypt } = require('./encryption');
 const rateLimit = require('express-rate-limit');
 const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
+const lusca = require("lusca");
 const crypto = require('crypto'); // ستحتاجه لتوليد التوكِن
 
 const app = express();
@@ -108,13 +109,17 @@ app.use(session({
     maxAge: 1000 * 60 * 15 // 15 دقيقة = 1000 ملي ثانية * 60 ثانية * 15  
     }
 }));
+
+app.use(lusca.csrf());
+
 app.post('/login', [
   body('email').matches( /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$/i)
   .withMessage('Invalid email format').normalizeEmail(),
   body('password')
   .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/)
   .withMessage('Incorrect password'),
-], async (req, res) => {
+], loginLimiter,
+  async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     const message = errors.array().map(e => e.msg).join(', ');
@@ -354,7 +359,7 @@ app.get('/logout', (req, res) => {
   });
 });
 
-app.get("/profile", async (req, res) => {
+app.get("/profile", loginLimiter, async (req, res) => {
   try {
     if (!req.session.userId) {
       return res.status(401).json({ message: "Not logged in" });
@@ -389,7 +394,7 @@ app.get("/profile", async (req, res) => {
 });
 
 // Route لعرض صفحة إعادة التعيين
-app.get('/reset-password/:token', async (req, res) => {
+app.get('/reset-password/:token', loginLimiter, async (req, res) => {
   const user = await User.findOne({
     resetPasswordToken: req.params.token,
     resetPasswordExpires: { $gt: Date.now() }
@@ -411,7 +416,7 @@ app.post('/reset-password', [
   body('password')
   .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/)
   .withMessage('Password must be at least 8 characters and include:\n• One uppercase letter\n• One lowercase letter\n• One special character')
-,], 
+,], loginLimiter,
   async (req, res) => {
      try {
       const errors = validationResult(req);
@@ -427,7 +432,7 @@ app.post('/reset-password', [
 
     }
 
-  const user = await User.findOne({ resetPasswordToken: token, resetPasswordExpires: { $gt: Date.now() } });
+  const user = await User.findOne({ resetPasswordToken: { $eq: token }, resetPasswordExpires: { $gt: Date.now() } });
 
     if (!user) {
       return res.status(400).json({ success: false, message: 'The link is invalid or expired ❌' }); // ✅
@@ -478,7 +483,7 @@ app.get('/service',loginLimiter, (req, res) => {
 
 
 //✅ حذف مستخدم:
-app.delete('/admin/users/:id', checkAdmin,checkSession, async (req, res) => {
+app.delete('/admin/users/:id', loginLimiter, checkAdmin,checkSession, async (req, res) => {
   try {
     await User.findByIdAndDelete(req.params.id);
     res.send('User deleted');
