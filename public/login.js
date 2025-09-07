@@ -1,4 +1,8 @@
-/* public/js/login.js */
+/*
+Vaultive - Copyright (C) 2025 Amjad Qandeel
+This file is part of Vaultive, licensed under GNU GPL v3.
+For full license text, see LICENSE file.
+*/
 document.addEventListener('DOMContentLoaded', () => {
   const form   = document.getElementById('login-form');
   const errBox = document.getElementById('error-message');
