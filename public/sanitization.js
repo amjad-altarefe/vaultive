@@ -1,5 +1,8 @@
-// sanitization.js
-
+/*
+Vaultive - Copyright (C) 2025 Amjad Qandeel
+This file is part of Vaultive, licensed under GNU GPL v3.
+For full license text, see LICENSE file.
+*/
 window.sanitizeInput = function(input) {
   return DOMPurify.sanitize(input.trim());
 };
