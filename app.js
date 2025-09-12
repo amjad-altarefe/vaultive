@@ -14,6 +14,12 @@ const bodyParser = require("body-parser");
 const lusca = require("lusca");
 const crypto = require('crypto'); // ستحتاجه لتوليد التوكِن
 
+// index.js (CommonJS)
+//app.use(express.urlencoded({ extended: false }));
+
+//////////////////////////////////////////////////////////////////
+
+
 const app = express();
 
 // إعداد مرسل البريد
@@ -65,7 +71,7 @@ const PORT=process.env.PORT;
 const EMAIL = process.env.EMAIL
 const SALT = Number(process.env.SALT);
 const secret = process.env.JWT_SECRET;
-const MONGO_DB = process.env.MONGO_DB
+const MONGO_DB = process.env.MONGODB_URI || process.env.MONGO_DB;
 
 mongoose.connect(MONGO_DB, {
     useNewUrlParser: true,
@@ -504,9 +510,9 @@ app.get('/api/user',loginLimiter, (req, res) => {
     .catch(() => res.status(500).json({ error: 'Server error' }));
 });
 
+// صدّر الـ app — Vercel يتعرف على الملف ويشغّله كـ Function أو App
+module.exports = app;
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
-
-
