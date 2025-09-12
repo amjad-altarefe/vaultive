@@ -1,9 +1,15 @@
 {
-  "functions": {
-    "app.js": { "runtime": "nodejs18.x", "maxDuration": 10 }
-  },
+  "version": 2,
+  "builds": [
+    {
+      "src": "app.js",
+      "use": "@vercel/node"
+    }
+  ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "/app.js" },
-    { "src": "/(.*)", "dest": "/app.js" }
+    {
+      "src": "/(.*)",
+      "dest": "app.js"
+    }
   ]
 }
