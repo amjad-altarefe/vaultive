@@ -84,7 +84,7 @@ and user-friendly experience for clients, administrators, and developers alike.
 
 - **Deployment:**
 
-  [![Vercel](https://img.shields.io/badge/Vercel-Cloud-black?style=flat\&logo=vercel\&logoColor=white)](https://vercel.com/)
+ [![Railway](https://img.shields.io/badge/Railway-Cloud-purple?style=flat&logo=railway&logoColor=white)](https://railway.app/)
 
 
 
@@ -263,7 +263,7 @@ Security tools used to scan and test the codebase:
 
 
 
-Link: https://appsec-project-4y5q.onrender.com/
+Link: https://vaultive-production-a696.up.railway.app
 
 
 
