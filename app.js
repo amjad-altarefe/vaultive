@@ -346,7 +346,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // الراوت الرئيسي يفتح login.html
 app.get('/',loginLimiter, (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'login.html'));
+    res.sendFile(path.join(__dirname, 'public', 'index1.html'));
 });
 
 
