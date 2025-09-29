@@ -93,7 +93,7 @@ app.use(express.json());
 // حد: 3 محاولات تسجيل دخول كل 15 دقيقة
 const loginLimiter = rateLimit({
   windowMs: 5 * 60 * 1000, // 15 دقيقة
-  max: 10, // عدد المحاولات المسموح بها
+  max: 50, // عدد المحاولات المسموح بها
   message: { message: 'Too many login attempts. Please try again later.' },
   standardHeaders: true,
   legacyHeaders: false,
@@ -101,7 +101,7 @@ const loginLimiter = rateLimit({
 
 const contactLimiter = rateLimit({
   windowMs: 60 * 1000, // دقيقة
-  max: 5,              // 5 رسائل بالدقيقة
+  max: 20,              // 5 رسائل بالدقيقة
   message: { message: "Too many requests. Please try again later." },
   standardHeaders: true,
   legacyHeaders: false,
