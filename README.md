@@ -84,7 +84,7 @@ and user-friendly experience for clients, administrators, and developers alike.
 
 - **Deployment:**
 
- [![Railway](https://img.shields.io/badge/Railway-Cloud-purple?style=flat&logo=railway&logoColor=white)](https://railway.app/)
+[![Vercel](https://img.shields.io/badge/Vercel-Cloud-black?style=flat&logo=vercel&logoColor=white)](https://vercel.com/)
 
 
 
@@ -263,7 +263,7 @@ Security tools used to scan and test the codebase:
 
 
 
-Link: https://vaultive-production-a696.up.railway.app
+Link: https://vaultive-qw89ocjtt-amjads-projects-ff882369.vercel.app/
 
 
 
@@ -277,7 +277,7 @@ Link: https://vaultive-production-a696.up.railway.app
 
 
 
-- Node.js >= 18.x
+- Node.js >= 22.x
 
 - MongoDB server
 
