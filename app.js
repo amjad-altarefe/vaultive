@@ -22,6 +22,9 @@ const crypto = require('crypto'); // ستحتاجه لتوليد التوكِن
 
 const app = express();
 
+// حل مشكلة proxy على Vercel
+app.set("trust proxy", 1); 
+
 // إعداد مرسل البريد
 const transporter = nodemailer.createTransport({
   service: 'gmail',
